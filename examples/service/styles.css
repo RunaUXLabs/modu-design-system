@@ -1,0 +1,513 @@
+/* ============================================================
+   Component styles — 모든 값은 tokens.css의 토큰만 참조.
+   ============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body, #root {
+  height: 100%;
+}
+body {
+  font-family: var(--font-family);
+  background: var(--color-bg-dark);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---------- Layout: 좌측 설명+테스터 컨트롤 / 우측 폰 프레임 ---------- */
+.layout {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 0 24px;
+}
+.layout__side {
+  width: 440px;
+  color: var(--color-text-dark);
+  padding-top: 8px;
+}
+.layout__title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-inverse);
+}
+.layout__tagline {
+  margin-top: var(--space-2);
+  font-size: var(--text-md);
+  color: var(--color-text-tagline);
+  line-height: 1.5;
+}
+.layout__how {
+  margin: var(--space-5) 0;
+  padding-left: 20px;
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-sub-dark);
+  line-height: 1.55;
+}
+.layout__how b {
+  color: var(--color-text-inverse);
+}
+.layout__how small {
+  /* 리스트 항목의 보조 설명 줄 — 마크업 줄바꿈(구문 단위)을 존중하고 위계만 CSS로 */
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  /* 문장형 보조 텍스트는 14px 이상 (접근성 패스) */
+  color: var(--color-text-weak-dark);
+  line-height: var(--leading-base);
+}
+.layout__stage {
+  position: relative;
+}
+.layout__storybook {
+  display: inline-block;
+  margin-top: var(--space-4);
+  color: var(--color-text-sub-dark);
+  font-size: var(--text-sm);
+  text-underline-offset: 4px;
+}
+.layout__storybook:hover {
+  color: var(--color-text-inverse);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 16px;
+  }
+  .layout__side {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+/* ---------- Judge Bar ---------- */
+.judge {
+  background: var(--color-surface-dark);
+  border: 1px solid var(--color-line-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+}
+.judge__row {
+  display: grid;
+  gap: var(--space-2);
+}
+.judge__avatars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.judge__row--time {
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+.judge__advance {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+.judge__advance:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.judge__reset {
+  color: var(--color-text-weak-dark);
+  font-size: var(--text-sm);
+  padding: 8px;
+}
+.judge__reset:hover {
+  color: var(--color-text-inverse);
+}
+.judge__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub-dark);
+  line-height: 1.5;
+}
+.judge__desc b {
+  color: var(--color-text-inverse);
+}
+.judge__principle {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--color-text-label-dark);
+}
+
+/* ============================================================
+   모바일 셸 최신화 — iPhone 16 Pro (402×874)
+   · 얇은 베젤(5px) · Dynamic Island · 조금 각진 모던 코너
+   styles.css 의 기존 .phone / .phone__notch 를 아래로 교체.
+   ============================================================ */
+.phone {
+  width: 402px;
+  height: 874px;
+  background: var(--color-bg);
+  border-radius: 38px;
+  /* 외곽. 화면(내부) ≈ 38-5 = 33 → 현재보다 살짝 각짐 */
+  border: 5px solid var(--color-black);
+  /* 8px → 5px 얇은 베젤 */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 구형 노치(120×24) → Dynamic Island */
+.phone__notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 126px;
+  height: 37px;
+  background: var(--color-black);
+  border-radius: var(--radius-full);
+  z-index: 30;
+}
+
+
+/* ---------- Chat ---------- */
+.chat__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 54px var(--space-4) var(--space-3);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+}
+.chat__back {
+  font-size: 24px;
+  color: var(--color-text-sub);
+}
+.chat__title {
+  flex: 1;
+  font-size: var(--text-lg);
+}
+.chat__count {
+  color: var(--color-text-weak);
+  margin-left: 2px;
+}
+.chat__settings {
+  color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+.chat__settings:hover {
+  color: var(--color-text);
+}
+.chat__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-4) var(--space-6);
+}
+.chat__input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4) 28px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-line);
+  color: var(--color-text-weak);
+  font-size: var(--text-md);
+}
+.chat__send {
+  color: var(--color-text-weak);
+}
+
+/* ---------- Push banner (타겟 푸시 시뮬레이션) ---------- */
+.push {
+  position: absolute;
+  top: 40px;
+  left: 12px;
+  right: 12px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: left;
+  background: var(--color-overlay);
+  color: var(--color-text-inverse);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-banner);
+  animation: pushIn var(--duration-base) var(--ease-out);
+}
+@keyframes pushIn {
+  from {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+}
+.push__app {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary-dark);
+  flex-shrink: 0;
+}
+.push__text {
+  flex: 1;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+.push__cta {
+  flex-shrink: 0;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* ---------- Pin bar (확정 전까지 버블 상단 고정) ---------- */
+.pinbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-primary-weak);
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+}
+.pinbar svg {
+  flex-shrink: 0;
+}
+.pinbar__text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pinbar__cta {
+  font-size: var(--text-xs);
+  color: var(--color-text-sub);
+  flex-shrink: 0;
+}
+
+/* ---------- Hint bar (테스터 힌트) ---------- */
+.hintbar__badge {
+  font-style: normal;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.6px;
+  background: #8a5a00;
+  color: var(--color-warn-weak);
+  padding: 0 var(--space-2);
+  line-height: 16px;
+  display: inline-block;
+  border-radius: var(--radius-full);
+  margin-right: var(--space-1);
+}
+.hintbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-warn-weak);
+  color: var(--color-warn-text-strong);
+  font-size: var(--text-sm);
+  /* 문장형 힌트 — 14px */
+  padding: var(--space-2) var(--space-4);
+  line-height: 1.4;
+}
+.hintbar button {
+  color: var(--color-warn-text-strong);
+  font-size: var(--text-xs);
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+
+/* ---------- Bubble (인터랙티브 메시지) ---------- */
+.bubble__slots {
+  display: grid;
+  gap: var(--space-3);
+  /* 보더에 걸친 플래그가 이전 카드와 겹치지 않도록 */
+  padding-top: var(--space-1);
+}
+.bubble__actions {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+.bubble__actions .btn--full {
+  justify-self: stretch;
+}
+
+/* ---------- SlotCard ---------- */
+/* 쏠림 시각화 — 선택형 하이라이트 대신 하단 게이지 스트립 + 인원 문구 오버레이.
+   색 칩(내 상태)과 게이지(팀의 쏠림)로 인코딩을 분리해 '내가 선택한 것' 오독 방지 */
+
+/* 접근성 — 키보드 포커스 가시성 (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Board (현황판) ---------- */
+
+/* ---------- Confirmed ---------- */
+.confirm__people {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.confirm__label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+.confirm__avatars {
+  display: flex;
+}
+.confirm__avatars .avatar {
+  margin-left: -8px;
+  border: 2px solid var(--color-surface);
+}
+.confirm__avatars .avatar:first-child {
+  margin-left: 0;
+}
+
+/* ---------- Primitives ---------- */
+
+/* ---------- Bottom Sheet ---------- */
+.sheet__dim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-dim);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 33px;
+}
+.sheet {
+  width: 100%;
+  max-height: 86%;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  /* 스크롤은 내부 body가 담당 — 라운드 코너를 스크롤바가 자르지 않음 */
+  display: flex;
+  flex-direction: column;
+  animation: sheetUp var(--duration-base) var(--ease-out);
+}
+@keyframes sheetUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+.sheet__grab {
+  width: 44px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-line);
+  margin: var(--space-3) auto var(--space-2);
+  flex-shrink: 0;
+}
+.sheet__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-3) var(--space-5) var(--space-5);
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+.sheet__body::-webkit-scrollbar {
+  width: 4px;
+}
+.sheet__body::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: var(--radius-full);
+}
+.sheet__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 하단 고정 푸터 + 스크롤 포그 — 본문이 넘친다는 것을 그라데이션으로 암시 */
+.sheet__footer {
+  position: relative;
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-5) var(--space-6);
+  background: var(--color-surface);
+  display: grid;
+  gap: var(--space-2);
+}
+.sheet__footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -36px;
+  height: 36px;
+  background: linear-gradient(to top, var(--color-surface) 25%, transparent);
+  pointer-events: none;
+}
+
+/* 여백 위계: 필드 내부 4px < 그룹 내 8~12px < 섹션 간 24px */
+.sheet__section {
+  display: grid;
+  gap: var(--space-2);
+}
+.sheet__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+}
+.sheet__slots, .sheet__reasons, .sheet__actions {
+  display: grid;
+  gap: var(--space-2);
+}
+.sheet__escalation {
+  display: grid;
+  gap: var(--space-2);
+  background: var(--color-surface-sub);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+/* ---------- Compose (생성) ---------- */
+.compose__fields {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sheet--tall {
+  height: 80%;
+  max-height: 80%;
+}
+
+/* ---------- Matrix (주최자 현황) ---------- */
+
+/* 응답 현황표(주최자) — 가로 스크롤 없이 폰 폭 안에 들어가는 컴팩트 표.
+   내용이 넘치는 예외 상황엔 좌측 팀원 열이 sticky로 고정된다 */
+.sheet__escalation .matrix__name {
+  width: auto;
+  flex: 1;
+  position: static;
+}
