@@ -4,10 +4,6 @@
 
 이 저장소는 서비스에서 사용하는 **디자인 시스템을 분리해 살펴보는 공간**입니다. Storybook에서 토큰, 개별 컴포넌트와 상태, 컴포넌트 조합 및 화면 안에서의 사용 예제를 확인할 수 있습니다. 서비스 전체 구성과 원본 코드, 디자인 시스템이 실제 화면에 연결되는 맥락은 [modu 저장소](https://github.com/RunaUXLabs/modu)에서 함께 확인할 수 있습니다.
 
-[온라인 Storybook](https://runauxlabs.github.io/modu-design-system/) · [배포 상태](https://github.com/RunaUXLabs/modu-design-system/actions/workflows/deploy-storybook.yml)
-
-온라인 주소는 GitHub Actions의 첫 배포가 성공한 뒤 사용할 수 있습니다.
-
 ## Storybook 미리보기
 
 <table>
