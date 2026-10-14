@@ -83,7 +83,7 @@ SlotCard set(52:165)의 componentPropertyDefinitions 조회는 'Component set ha
 - BubbleShell/SlotCard/Matrix/Sheet/Phone/ChatChrome의 확인된 SLOT 매핑과 미확인 속성을 정정했다.
 - MembersProvider 이후 NameFlow/MessageRow/MemberCard 계약과 SegButton의 접근성 보완을 구분했다.
 - ProposalBubble의 store 사용을 일반 props 금지 규칙으로 설명하지 않도록 정정했다. ConfirmedBubble의 예약/등록 문구는 외부 API 연동 증빙이 아님을 명시했다.
-- Storybook/이력용 문서에도 실제 사용 사례와 API 시연, 확인된 검증 범위를 구분했다.
+- Storybook 문서에서도 실제 사용 사례와 API 시연, 확인된 검증 범위를 구분했다.
 
 구현 API, 서비스 코드, Storybook story 및 Figma 디자인은 변경하지 않았다. 남은 작업은 미사용 story의 분리, Figma 600 굵기 정렬 검토/SlotCard set 오류 확인 및 폰트 조건을 맞춘 브라우저 비교다. 기계 판독용 DESIGN-SYSTEM.md와 토큰 값은 유지했다.
 

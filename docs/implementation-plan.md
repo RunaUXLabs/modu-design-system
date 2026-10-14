@@ -416,7 +416,7 @@ modu-design-system/
 - Foundations, Atoms, Molecules, Integration 예제 구성. 기존 토큰과 variant는 변경하지 않음.
 - 토큰 정본 CSS 파싱, Controls, 클릭/키보드/controlled 응답 play 함수 작성.
 - 라이브러리 빌드와 Storybook 빌드 및 타입 검사 경계 분리.
-- [실행 및 검토 가이드](storybook-guide.md), [이력용 기록](portfolio-case-study.md) 작성.
+- [실행 및 검토 가이드](storybook-guide.md) 작성. 현재 구성 의도와 보여주는 수준은 [Storybook 목적과 범위](storybook-scope.md)에 정리.
 - 설치는 개발자가 직접 진행. Storybook 실행, 전용 타입 검사, 정적 빌드 및 브라우저 검토는 설치 후 검증 대상.
 - 자동 전체 story 실행, 시각 회귀 CI 및 외부 공개는 이번 범위에 포함하지 않음.
 

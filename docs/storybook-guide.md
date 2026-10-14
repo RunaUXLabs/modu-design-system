@@ -1,5 +1,7 @@
 # Storybook 실행 및 검토
 
+구성 의도와 보여주는 수준은 [Storybook 목적과 범위](storybook-scope.md)를 참조합니다.
+
 ## 실행
 
 Node 22.13.0 이상, pnpm 12.11.2를 사용합니다. 설치는 개발자가 직접 수행합니다.
@@ -12,7 +14,28 @@ pnpm run test:service-stories
 pnpm run build:storybook
 ```
 
-기본 주소는 `http://localhost:6006`, 정적 결과는 `storybook-static/`입니다. 설정 변경 후 개발 서버를 재시작하세요. 라이브러리 Vite 설정과 Storybook 설정은 분리돼 있습니다.
+기본 주소는 `http://localhost:6008`, 정적 결과는 `storybook-static/`입니다. 서비스 Storybook의 기본 포트 6006과 분리했습니다. 설정 변경 후 개발 서버를 재시작하세요. 라이브러리 Vite 설정과 Storybook 설정은 분리돼 있습니다.
+
+`EADDRINUSE`는 해당 포트를 다른 서버가 이미 사용한다는 뜻입니다. 기존 서버를 유지하려면 `pnpm exec storybook dev -p 6011 --no-open`처럼 비어 있는 포트를 지정하세요. `ERR_PNPM_UNSUPPORTED_ENGINE`이면 `pnpm --version`과 `Get-Command pnpm -All`로 12.11.2 실행 파일이 선택되는지 확인합니다. 이는 포트 충돌과 별개의 문제입니다.
+
+## VS Code 실행 환경 점검
+
+환경변수 PATH를 바꾼 뒤에도 열려 있던 VS Code는 이전 환경을 유지할 수 있습니다. 모든 VS Code 창을 종료한 뒤 다시 열고, 디자인 시스템 폴더의 새 터미널에서 확인하세요.
+
+```powershell
+pnpm --version # 12.11.2
+node --version # 22.13.0 이상
+Get-Command pnpm -All
+pnpm storybook
+```
+
+이 PC에는 구버전 `AppData/Local/pnpm` 실행 파일과 12.11.2인 `AppData/Roaming/npm` 실행 파일이 함께 설치돼 있습니다. 여전히 8.15.4가 선택되면 다음 명령으로 기존 12.11.2 실행 파일을 직접 사용할 수 있습니다. 재설치하거나 engine 제한을 해제할 필요는 없습니다.
+
+```powershell
+& "$env:APPDATA\npm\pnpm.cmd" storybook
+```
+
+이미 같은 포트의 서버가 실행 중이면 그 서버를 연 터미널에서 `Ctrl+C`로 종료합니다. 브라우저 탭만 닫아서는 서버가 종료되지 않습니다. 코드 편집기와 별도 도구에서 같은 Storybook을 중복 실행하지 않도록 합니다.
 
 ## 검토 구성
 
@@ -48,4 +71,4 @@ Field는 children으로 편집 UI를 받으며 편집 상태·저장은 서비�
 
 서비스 phone의 402×874 고정 프레임을 보존하며 좁은 viewport에서는 스크롤합니다. light/chat/dark는 기존 배경을 재현하는 preview 설정이지 새 제품 테마가 아닙니다. 접근성 설정 `test: 'todo'`는 보고용입니다. 타입 검사·정적 빌드·DOM 테스트 통과가 전체 브라우저 상호작용이나 WCAG 통과를 의미하지 않습니다.
 
-동기화 범위와 이번 검증 결과는 [동기화 기록](synchronization.md), 이전 이력은 [SSOT 점검](ssot-audit.md)과 [포트폴리오 기록](portfolio-case-study.md)을 참고합니다.
+동기화 범위와 이번 검증 결과는 [동기화 기록](synchronization.md), 이전 점검 내용은 [SSOT 점검](ssot-audit.md)을 참고합니다.
