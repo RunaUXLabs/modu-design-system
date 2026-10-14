@@ -1,0 +1,51 @@
+{
+  "name": "modu-design-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.11.2",
+  "engines": {
+    "node": ">=22.13.0",
+    "pnpm": "12.11.2"
+  },
+  "files": ["dist", "README.md", "DESIGN-SYSTEM.md", "docs"],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./style.css": "./dist/style.css",
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "sideEffects": ["**/*.css"],
+  "scripts": {
+    "typecheck": "pnpm exec tsc --noEmit",
+    "build": "pnpm run typecheck && pnpm exec vite build && pnpm exec tsc -p tsconfig.build.json && node scripts/copy-tokens.mjs",
+    "test": "pnpm exec vitest run",
+    "test:service-stories": "pnpm exec vitest run --config vitest.service.config.ts",
+    "storybook": "pnpm exec storybook dev -p 6006 --no-open",
+    "typecheck:storybook": "pnpm exec tsc -p tsconfig.storybook.json --noEmit",
+    "build:storybook": "pnpm run typecheck:storybook && pnpm exec storybook build -o storybook-static",
+    "prepack": "pnpm run build",
+    "check": "pnpm run test && pnpm run build"
+  },
+  "peerDependencies": { "react": "^18.3.1 || ^19.0.0", "react-dom": "^18.3.1 || ^19.0.0" },
+  "devDependencies": {
+    "storybook": "10.6.2",
+    "@storybook/react-vite": "10.6.2",
+    "@storybook/addon-docs": "10.6.2",
+    "@storybook/addon-a11y": "10.6.2",
+    "@types/node": "^22.13.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  }
+}

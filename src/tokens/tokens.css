@@ -1,0 +1,202 @@
+/* ============================================================
+   Design Tokens — 모든 컴포넌트는 이 토큰만 참조한다.
+   하드코딩된 색/간격/폰트가 컴포넌트 CSS에 등장하면 리뷰에서 걸러냄.
+   ============================================================ */
+:root {
+   /* ============================================================
+     1. Primitive Color Tokens (기초 색상 팔레트)
+     ============================================================ */
+   /* Grayscale / Light Neutral (App Palette) */
+   --white: #ffffff;
+   --gray-50: #f9fafb;
+   --gray-100: #f2f4f6;
+   --gray-200: #e5e8eb;
+   --gray-600: #667180;
+   --gray-700: #5b6573;
+   --gray-900: #191f28;
+
+   /* Slate / Dark Neutral (Presenter & Judge Palette) */
+   --black: #000000;
+   --slate-900: #0f1420;
+   --slate-800: #141a28;
+   --slate-750: #1a2130;
+   --slate-700: #1d2a44;
+   --slate-650: #212a3d;
+   --slate-600: #2a3345;
+   --slate-500: #5c6878;
+   --slate-400: #7e8aa0;
+   --slate-300: #8fa0b8;
+   --slate-200: #9aa5b5;
+   --slate-150: #b7c0cd;
+   --slate-100: #dfe5ee;
+
+   /* Brand Blue */
+   --blue-50: #e8f3ff;
+   --blue-300: #8fb4ff;
+   --blue-600: #1b64da;
+
+   /* User Colors — 아바타 6색 (인덱스 round-robin). DS: primitive/user/1~6 */
+   --user-1: #3182f6;
+   --user-2: #7048e8;
+   --user-3: #0ca678;
+   --user-4: #f59f00;
+   --user-5: #e64980;
+   --user-6: #495057;
+
+   /* Status Red (Danger) */
+   --red-50: #fdedee;
+   --red-600: #cc2b3d;
+
+   /* Status Green (Success) */
+   --green-50: #e6f6ee;
+   --green-600: #0e7a45;
+
+   /* Status Amber (Warning) */
+   --amber-50: #fff4e5;
+   --amber-500: #ff9500;
+   --amber-800: #8f5500;
+   --amber-900: #8a5a00;
+
+   /* Alpha / Overlays */
+   --alpha-dim: rgba(25, 31, 40, 0.55);
+   --alpha-overlay: rgba(20, 25, 35, 0.94);
+
+   /* ============================================================
+     2. Semantic Color Tokens — Light Theme (앱 UI / 모바일 프레임)
+     ============================================================ */
+   /* Backgrounds & Surfaces (배경 및 표면) */
+   --color-bg: #f2f4f6;
+   /* 앱 배경 */
+   --color-surface: #ffffff;
+   /* 카드, 버블, 시트 */
+   --color-surface-sub: #f9fafb;
+   /* 중첩 표면 */
+   --color-line: #e5e8eb;
+   /* 구분선, 보더 */
+
+   /* Text & Labels (텍스트 및 라벨) — 흰 배경·surface-sub 기준 WCAG AA(4.5:1) 검증 완료 */
+   --color-text: #191f28;
+   /* 본문 16.6:1 */
+   --color-text-sub: #5b6573;
+   /* 보조 텍스트 5.7:1 */
+   --color-text-weak: #667180;
+   /* 약한 텍스트·힌트 4.9:1 — 실제 문장에 쓰이므로 AA 필수 */
+   --color-text-inverse: #ffffff;
+   /* 반전 텍스트 / 다크·주 액션 배경 위 텍스트 */
+
+   /* Brand & Primary Actions (브랜드 및 주 액션) */
+   --color-primary: #1b64da;
+   /* 주 액션, 확정 — 흰 텍스트와 5.4:1, 흰 배경 위 텍스트로도 5.4:1 */
+   --color-primary-weak: #e8f3ff;
+   /* 주 액션 배경 */
+
+   /* Status & Feedback (상태 및 피드백) */
+   --color-danger: #cc2b3d;
+   /* 이의, 어려움 — danger-weak 위 4.7:1 */
+   --color-danger-weak: #fdedee;
+   /* 이의/위험 배경 */
+   --color-success: #0e7a45;
+   /* 확정 완료 — success-weak 위 4.8:1 */
+   --color-success-weak: #e6f6ee;
+   /* 성공/완료 배경 */
+   --color-warn: #ff9500;
+   /* 배경·아이콘 전용 — 텍스트로 쓰지 말 것 */
+   --color-warn-text: #8f5500;
+   /* warn-weak 위 텍스트 5.6:1 */
+   --color-warn-weak: #fff4e5;
+   /* 경고 배경 */
+   --color-warn-text-strong: #8a5a00;
+   /* warn-weak 위 강조 텍스트 (힌트바, 경고 공지) */
+
+   /* ============================================================
+     3. Semantic Color Tokens — Dark Theme (발표 화면 및 심사 바 UI)
+     ============================================================ */
+   /* Backgrounds & Surfaces (다크 테마 배경 및 표면) */
+   --color-bg-dark: #0f1420;
+   /* 발표/심사 화면 배경 */
+   --color-surface-dark: #1a2130;
+   /* 심사 바 표면 */
+   --color-surface-sub-dark: #141a28;
+   /* 심사 단계 뱃지 등 중첩 표면 */
+   --color-surface-hover-dark: #212a3d;
+   /* 테스터 카드 호버 배경 */
+   --color-surface-active-dark: #1d2a44;
+   /* 활성 테스터 카드 배경 */
+   --color-line-dark: #2a3345;
+   /* 심사 바 보더 및 구분선 */
+
+   /* Text & Labels (다크 테마 텍스트) */
+   --color-text-dark: #dfe5ee;
+   /* 다크 테마 본문 텍스트 */
+   --color-text-sub-dark: #b7c0cd;
+   /* 다크 테마 보조 텍스트 (설명 등) */
+   --color-text-tagline: #9aa5b5;
+   /* 다크 테마 태그라인/부제 텍스트 */
+   --color-text-weak-dark: #8fa0b8;
+   /* 다크 테마 약한 텍스트 (멤버 설명, 과거 단계 등) */
+   --color-text-label-dark: #7e8aa0;
+   /* 다크 테마 라벨/캡션 텍스트 */
+   --color-text-muted-dark: #5c6878;
+   /* 다크 테마 뮤트 텍스트 (미선택 단계 뱃지 등) */
+
+   /* Brand & Primary Actions (다크 테마 브랜드) */
+   --color-primary-dark: #8fb4ff;
+   /* 다크 배경 위 강조 브랜드 컬러 (푸시 알림 앱 이름 등) */
+
+   /* ============================================================
+     4. Overlays & Special Purpose Tokens (오버레이 및 특수 목적 토큰)
+     ============================================================ */
+   --color-dim: rgba(25, 31, 40, 0.55);
+   /* 시트 뒤 배경 딤 */
+   --color-overlay: rgba(20, 25, 35, 0.94);
+   /* 푸시 알림 배너 등 오버레이 표면 */
+   --color-black: #000000;
+   /* 폰 프레임, 노치 등 절대 흑색 */
+   --color-white: #ffffff;
+   /* 절대 백색 (타이틀, 반전 텍스트 등) */
+
+   /* Typography — 기준(base) 16px. 위계: caption(12) < sub(14) < body(16) < title(18) < display(22) */
+   --font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont,
+      system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+   --text-xs: 12px;
+   /* caption — 힌트, 출처, 라벨 */
+   --text-sm: 14px;
+   /* sub — 보조 텍스트, 칩, 현황판 */
+   --text-md: 16px;
+   /* body — 본문 기준 */
+   --text-lg: 18px;
+   /* title — 시트·버블 타이틀 */
+   --text-xl: 24px;
+   /* display — 페이지 타이틀 */
+   --leading-tight: 1.3;
+   --leading-base: 1.5;
+   --weight-regular: 400;
+   --weight-medium: 500;
+   --weight-semibold: 600;
+   --weight-bold: 700;
+
+   /* Spacing — 4px 그리드. 모든 치수(패딩·마진·오프셋·크기)는 4배수 원칙.
+     허용 예외: 타입 스케일의 14/18px(위계 최적화), 폰 프레임 390px(기기 규격), 자간, 1px 보더/선 */
+   --space-1: 4px;
+   --space-2: 8px;
+   --space-3: 12px;
+   --space-4: 16px;
+   --space-5: 20px;
+   --space-6: 24px;
+
+   /* Radius */
+   --radius-sm: 8px;
+   --radius-md: 12px;
+   --radius-lg: 16px;
+   --radius-full: 999px;
+
+   /* Elevation */
+   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+   --shadow-sheet: 0 -8px 24px rgba(0, 0, 0, 0.12);
+   --shadow-banner: 0 4px 16px rgba(0, 0, 0, 0.16);
+
+   /* Motion */
+   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+   --duration-fast: 150ms;
+   --duration-base: 250ms;
+}

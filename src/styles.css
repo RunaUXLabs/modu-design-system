@@ -1,0 +1,805 @@
+/* Low-specificity defaults scoped to package classes and their contents. */
+:where(
+  .judge__label, .judge__member, .judge__member--active, .judge__membername, .judge__memberdesc,
+  .judge__stages, .judge__stage, .judge__stage--past, .judge__stage--now, .chat__date,
+  .chat__msg, .chat__msg--mine, .chat__msgbody, .chat__msg--system, .chat__msg--center,
+  .bubble, .chat__name, .chat__text, .chat__text--mine, .bubble__head,
+  .bubble__app, .bubble__title, .bubble__subtitle, .slotcard, .slotcard--hero,
+  .slotcard__day, .slotcard__main, .slotcard__date, .slotcard__time, .slotcard__room,
+  .slotcard--tally, .slotcard__flag, .chip, .slotcard__gauge, .slotcard__gaugetext,
+  .slotcard__info, .slotcard__meta, .slotcard__count, .slotcard--respond, .slotcard--preset,
+  .slotcard__presetlabel, .board, .board__deadline, .avatar, .avatar--sm,
+  .avatar--md, .avatar--dimmed, .btn, .btn--md, .btn--sm,
+  .btn--full, .btn--primary, .btn--secondary, .btn--ghost,
+  .chip--neutral, .chip--primary, .chip--danger, .chip--success, .chip--warn,
+  .seg, .seg__item, .seg__item--ok, .seg__item--hard, .seg--disabled,
+  .notice, .notice--neutral, .notice--weak, .notice--warn, .notice--danger,
+  .notice--success, .nameflow, .sheet__sectiontitle, .field, .field__row,
+  .field__label, .field__value, .field__editicon, .field__source, .field__input,
+  .field__options, .matrix, .matrix__row, .matrix__name, .matrix__cell,
+  .matrix__cell--head, .matrix__cell--ok, .matrix__cell--hard, .matrix__cell--none, .matrix--table,
+  .matrix__name--head, .matrix__nametext, .matrix__role, .matrix__role--req
+) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  color: inherit;
+
+  & *,
+  &::before,
+  &::after,
+  & *::before,
+  & *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  &:where(button),
+  & :where(button) {
+    color: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  & :where(button, input, select, textarea) {
+    font-family: inherit;
+  }
+}
+
+/* Standalone surfaces default to text; inline parts inherit their context. */
+:where(.avatar, .btn, .chip, .seg, .notice, .slotcard, .board, .field, .matrix, .bubble, .chat__date, .chat__msg, .chat__msgbody, .chat__name, .chat__text, .judge__label, .judge__member, .judge__stage, .judge__stages, .sheet__sectiontitle) {
+  color: var(--color-text);
+}
+
+/* Documented atom and molecule styles, copied from modu/src/styles.css. */
+.judge__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-label-dark);
+  letter-spacing: 0.4px;
+}
+
+.judge__member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.judge__member:hover {
+  background: var(--color-surface-hover-dark);
+}
+
+.judge__member--active {
+  border-color: var(--color-primary);
+  background: var(--color-surface-active-dark);
+}
+
+.judge__membername {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-inverse);
+}
+
+.judge__memberdesc {
+  font-size: var(--text-xs);
+  color: var(--color-text-weak-dark);
+  /* 다크 배경 6.1:1 */
+}
+
+.judge__stages {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.judge__stage {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted-dark);
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-sub-dark);
+}
+
+.judge__stage--past {
+  color: var(--color-text-weak-dark);
+}
+
+.judge__stage--now {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.chat__date {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-weak);
+  margin-bottom: var(--space-4);
+}
+
+.chat__msg {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  align-items: flex-start;
+}
+
+.chat__msg--mine {
+  flex-direction: row-reverse;
+}
+
+.chat__msgbody {
+  max-width: 82%;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.chat__msg--mine .chat__msgbody {
+  justify-items: end;
+}
+
+.chat__msg--system .chat__msgbody {
+  max-width: 92%;
+  width: 100%;
+}
+
+.chat__msg--center {
+  /* 시스템 명의의 중앙 카드 — 집행의 주체는 사람이 아니라 시스템 (집행 명의의 원칙) */
+  margin: 0 var(--space-1) var(--space-4);
+}
+
+.chat__msg--center .bubble {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+}
+
+.chat__name {
+  font-size: var(--text-xs);
+  color: var(--color-text-sub);
+}
+
+.chat__text {
+  background: var(--color-surface);
+  border-radius: 4px 16px 16px 16px;
+  padding: 10px 14px;
+  font-size: var(--text-md);
+  line-height: 1.45;
+  box-shadow: var(--shadow-card);
+}
+
+.chat__text--mine {
+  background: var(--color-primary-weak);
+  border-radius: 16px 4px 16px 16px;
+}
+
+.bubble {
+  background: var(--color-surface);
+  border-radius: 4px 16px 16px 16px;
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.bubble__head {
+  display: grid;
+  gap: 2px;
+}
+
+.bubble__app {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+}
+
+.bubble__title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+}
+
+.bubble__subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+}
+
+.slotcard {
+  border-radius: var(--radius-md);
+}
+
+.slotcard--hero {
+  background: var(--color-primary-weak);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.slotcard--hero .slotcard__day {
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  font-weight: var(--weight-semibold);
+}
+
+.slotcard--hero .slotcard__main {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.slotcard--hero .slotcard__date {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+}
+
+.slotcard--hero .slotcard__time {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+.slotcard--hero .slotcard__room {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+}
+
+.slotcard--tally {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-sub);
+  border: 1px solid var(--color-line);
+  text-align: left;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.slotcard--tally:hover {
+  border-color: var(--color-primary);
+}
+
+.slotcard--tally {
+  position: relative;
+  overflow: visible;
+  /* 상단 보더에 걸치는 1순위 플래그를 위해 — 게이지는 자체 클리핑 */
+  padding-bottom: calc(24px + var(--space-3));
+  /* 게이지 스트립 높이만큼 하단 여백 확보 */
+}
+
+.slotcard__flag {
+  /* 카드 보더에 반쯤 걸치는 태그 — 내부 칩·문구와 충돌하지 않는 유일한 자리 */
+  position: absolute;
+  top: -8px;
+  right: var(--space-3);
+  z-index: 1;
+}
+
+.slotcard__flag .chip {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.slotcard__gauge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 24px;
+  background: var(--color-surface);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.slotcard__gauge i {
+  display: block;
+  height: 100%;
+  background: var(--color-primary-weak);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.slotcard__gaugetext {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  font-style: normal;
+  font-size: var(--text-sm);
+  /* 게이지 문장 — 14px */
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+}
+
+.slotcard__info {
+  display: grid;
+  gap: 2px;
+}
+
+.slotcard__date {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+.slotcard__time {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+}
+
+.slotcard__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.slotcard__count {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+}
+
+.slotcard--respond {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-sub);
+  border: 1px solid var(--color-line);
+}
+
+.slotcard--preset {
+  border-style: dashed;
+}
+
+.slotcard__presetlabel {
+  font-size: var(--text-sm);
+  color: var(--color-warn-text);
+  /* #ff9500은 텍스트 대비 미달(2.1:1) — 텍스트 전용 토큰 사용 */
+}
+
+.board {
+  width: 100%;
+  text-align: left;
+  background: var(--color-surface-sub);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+  display: grid;
+  gap: var(--space-1);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.board:hover {
+  background: var(--color-primary-weak);
+}
+
+.board b {
+  color: var(--color-text);
+  font-weight: var(--weight-semibold);
+}
+
+.board__deadline {
+  font-size: var(--text-sm);
+  /* 마감 규칙 안내는 실질 정보 — 14px */
+  color: var(--color-text-weak);
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--avatar-bg, var(--user-1));
+  /* 인스턴스가 --avatar-bg로 유저컬러 주입 */
+  color: var(--color-text-inverse);
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.avatar--sm {
+  width: 28px;
+  height: 28px;
+  font-size: var(--text-xs);
+}
+
+.avatar--md {
+  width: 40px;
+  height: 40px;
+  font-size: var(--text-md);
+}
+
+.avatar--dimmed {
+  opacity: 0.35;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.btn--md {
+  font-size: var(--text-md);
+  padding: 12px 16px;
+}
+
+.btn--sm {
+  font-size: var(--text-sm);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.btn--primary:hover {
+  filter: brightness(1.06);
+}
+
+.btn--primary:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.btn--secondary {
+  background: var(--color-primary-weak);
+  color: var(--color-primary);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-sub);
+}
+
+.btn--secondary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+}
+
+.chip--neutral {
+  background: var(--color-surface-sub);
+  color: var(--color-text-sub);
+  border: 1px solid var(--color-line);
+}
+
+.chip--primary {
+  background: var(--color-primary-weak);
+  color: var(--color-primary);
+}
+
+.chip--danger {
+  background: var(--color-danger-weak);
+  color: var(--color-danger);
+}
+
+.chip--success {
+  background: var(--color-success-weak);
+  color: var(--color-success);
+}
+
+.chip--warn {
+  background: var(--color-warn-weak);
+  color: var(--color-warn-text);
+}
+
+.seg {
+  display: inline-flex;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.seg__item {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  padding: 8px 12px;
+  color: var(--color-text-weak);
+}
+
+.seg__item--ok {
+  background: var(--color-success-weak);
+  color: var(--color-success);
+  font-weight: var(--weight-semibold);
+}
+
+.seg__item--hard {
+  background: var(--color-danger-weak);
+  color: var(--color-danger);
+  font-weight: var(--weight-semibold);
+}
+
+.seg--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.notice {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+
+.notice--neutral {
+  background: var(--color-surface-sub);
+  color: var(--color-text-sub);
+}
+
+.notice--weak {
+  background: transparent;
+  color: var(--color-text-weak);
+  padding: 0;
+  font-size: var(--text-sm);
+  /* 규칙·안내 문장은 14px 이상 (접근성 패스) */
+}
+
+.notice--warn {
+  background: var(--color-warn-weak);
+  color: var(--color-warn-text-strong);
+}
+
+.notice--danger {
+  background: var(--color-danger-weak);
+  color: var(--color-danger);
+}
+
+.notice--success {
+  background: var(--color-success-weak);
+  color: var(--color-success);
+}
+
+.nameflow b {
+  font-weight: var(--weight-semibold);
+}
+
+.sheet__sectiontitle {
+  /* 서브타이틀 — 본문(16px)과 명확히 구분되는 라벨 위계: 12px·bold·약한 색·자간.
+     ::after가 라벨 옆 남은 폭을 1px 선으로 채워 '선 위의 라벨'로 섹션 경계를 강조 */
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-weak);
+  letter-spacing: 0.6px;
+  margin-bottom: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sheet__sectiontitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-line);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.field__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+  font-weight: var(--weight-medium);
+}
+
+.field__value {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+  background: var(--color-surface-sub);
+  border: 1px solid var(--color-line);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.field__value:hover {
+  border-color: var(--color-primary);
+}
+
+.field__editicon {
+  font-size: var(--text-xs);
+  color: var(--color-text-weak);
+  margin-left: 2px;
+}
+
+.field__source {
+  font-size: var(--text-xs);
+  color: var(--color-text-weak);
+  line-height: var(--leading-base);
+}
+
+.field__input {
+  font-family: inherit;
+  font-size: var(--text-md);
+  padding: 8px 12px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  outline: none;
+  width: 100%;
+}
+
+.field__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.matrix {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.matrix__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.matrix__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.matrix__cell {
+  width: 64px;
+  text-align: center;
+  font-size: var(--text-sm);
+  padding: 8px 0;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.matrix__cell--head {
+  font-size: var(--text-xs);
+  color: var(--color-text-weak);
+  padding: 0;
+}
+
+.matrix__cell--ok {
+  background: var(--color-success-weak);
+  color: var(--color-success);
+  font-weight: var(--weight-bold);
+}
+
+.matrix__cell--hard {
+  background: var(--color-danger-weak);
+  color: var(--color-danger);
+  font-weight: var(--weight-bold);
+}
+
+.matrix__cell--none {
+  background: var(--color-surface-sub);
+  color: var(--color-text-weak);
+}
+
+.matrix__row .btn {
+  margin-left: auto;
+}
+
+.matrix--table {
+  overflow-x: auto;
+}
+
+.matrix--table .matrix__name {
+  width: 100px;
+  flex-shrink: 0;
+  position: sticky;
+  left: 0;
+  background: var(--color-surface);
+  z-index: 1;
+}
+
+.matrix__name--head {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-weak);
+}
+
+.matrix__nametext {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.matrix__role {
+  /* 필/선 한 글자 마커 — 칩 대신 얇은 원형 배지로 행 두께 최소화 */
+  font-style: normal;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-sub);
+  border: 1px solid var(--color-line);
+  color: var(--color-text-weak);
+  flex-shrink: 0;
+}
+
+.matrix__role--req {
+  background: var(--color-primary-weak);
+  border-color: transparent;
+  color: var(--color-primary);
+}
+
+.matrix--table .matrix__cell {
+  flex: 1;
+  min-width: 56px;
+}
+
+/* Keyboard focus is limited to package components and their contents. */
+:where(
+  .judge__label, .judge__member, .judge__member--active, .judge__membername, .judge__memberdesc,
+  .judge__stages, .judge__stage, .judge__stage--past, .judge__stage--now, .chat__date,
+  .chat__msg, .chat__msg--mine, .chat__msgbody, .chat__msg--system, .chat__msg--center,
+  .bubble, .chat__name, .chat__text, .chat__text--mine, .bubble__head,
+  .bubble__app, .bubble__title, .bubble__subtitle, .slotcard, .slotcard--hero,
+  .slotcard__day, .slotcard__main, .slotcard__date, .slotcard__time, .slotcard__room,
+  .slotcard--tally, .slotcard__flag, .chip, .slotcard__gauge, .slotcard__gaugetext,
+  .slotcard__info, .slotcard__meta, .slotcard__count, .slotcard--respond, .slotcard--preset,
+  .slotcard__presetlabel, .board, .board__deadline, .avatar, .avatar--sm,
+  .avatar--md, .avatar--dimmed, .btn, .btn--md, .btn--sm,
+  .btn--full, .btn--primary, .btn--secondary, .btn--ghost,
+  .chip--neutral, .chip--primary, .chip--danger, .chip--success, .chip--warn,
+  .seg, .seg__item, .seg__item--ok, .seg__item--hard, .seg--disabled,
+  .notice, .notice--neutral, .notice--weak, .notice--warn, .notice--danger,
+  .notice--success, .nameflow, .sheet__sectiontitle, .field, .field__row,
+  .field__label, .field__value, .field__editicon, .field__source, .field__input,
+  .field__options, .matrix, .matrix__row, .matrix__name, .matrix__cell,
+  .matrix__cell--head, .matrix__cell--ok, .matrix__cell--hard, .matrix__cell--none, .matrix--table,
+  .matrix__name--head, .matrix__nametext, .matrix__role, .matrix__role--req
+) {
+  &:focus-visible,
+  & :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
