@@ -23,7 +23,7 @@
     "build": "pnpm run typecheck && pnpm exec vite build && pnpm exec tsc -p tsconfig.build.json && node scripts/copy-tokens.mjs",
     "test": "pnpm exec vitest run",
     "test:service-stories": "pnpm exec vitest run --config vitest.service.config.ts",
-    "storybook": "pnpm exec storybook dev -p 6006 --no-open",
+    "storybook": "storybook dev -p 6008 --no-open",
     "typecheck:storybook": "pnpm exec tsc -p tsconfig.storybook.json --noEmit",
     "build:storybook": "pnpm run typecheck:storybook && pnpm exec storybook build -o storybook-static",
     "prepack": "pnpm run build",
