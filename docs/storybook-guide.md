@@ -37,6 +37,16 @@ pnpm storybook
 
 이미 같은 포트의 서버가 실행 중이면 그 서버를 연 터미널에서 `Ctrl+C`로 종료합니다. 브라우저 탭만 닫아서는 서버가 종료되지 않습니다. 코드 편집기와 별도 도구에서 같은 Storybook을 중복 실행하지 않도록 합니다.
 
+## GitHub Actions 배포
+
+배포 워크플로는 `.github/workflows/deploy-storybook.yml`입니다. 저장소 **Settings → Pages → Build and deployment → Source**에서 **GitHub Actions**를 선택합니다. 브랜치의 루트나 `docs/`를 직접 게시하는 설정은 사용하지 않습니다.
+
+`main` 푸시 또는 Actions의 **Run workflow**로 실행합니다. pnpm 12.11.2와 Node 22 환경에서 lockfile 기준 설치, 컴포넌트·서비스 예제 테스트, Storybook 타입 검사·빌드를 수행합니다. 빌드 작업은 `storybook-static/`을 업로드하고, 별도 배포 작업은 `github-pages` 환경으로 게시합니다. npm 발행과 개발 서버 실행은 하지 않습니다.
+
+공개 주소: [온라인 Storybook](https://runauxlabs.github.io/modu-design-system/). 첫 배포 성공 전에는 404가 나타날 수 있습니다. 최신 상태는 [배포 실행 목록](https://github.com/RunaUXLabs/modu-design-system/actions/workflows/deploy-storybook.yml)에서 확인합니다. Pages의 공개 주소와 배포 완료 여부는 Actions 결과를 기준으로 확인합니다.
+
+참고: [GitHub Pages 사용자 지정 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
 ## 검토 구성
 
 | 영역 | 확인 내용 |

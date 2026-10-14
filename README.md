@@ -4,6 +4,10 @@
 
 이 저장소는 서비스에서 사용하는 **디자인 시스템을 분리해 살펴보는 공간**입니다. Storybook에서 토큰, 개별 컴포넌트와 상태, 컴포넌트 조합 및 화면 안에서의 사용 예제를 확인할 수 있습니다. 서비스 전체 구성과 원본 코드, 디자인 시스템이 실제 화면에 연결되는 맥락은 [modu 저장소](https://github.com/RunaUXLabs/modu)에서 함께 확인할 수 있습니다.
 
+[온라인 Storybook](https://runauxlabs.github.io/modu-design-system/) · [배포 상태](https://github.com/RunaUXLabs/modu-design-system/actions/workflows/deploy-storybook.yml)
+
+온라인 주소는 GitHub Actions의 첫 배포가 성공한 뒤 사용할 수 있습니다.
+
 ## Storybook 미리보기
 
 <table>
@@ -98,4 +102,8 @@ SSOT는 실제 서비스 코드입니다. Figma 슬롯과 React children/props�
 
 소스, 설정, 문서, `examples/service`, `pnpm-lock.yaml`을 함께 관리합니다. `node_modules`, `dist`, `storybook-static`, tarball은 Git에서 제외합니다. 별도 저장소를 체크아웃해 설치한 뒤 라이브러리와 Storybook을 각각 빌드할 수 있습니다.
 
-현재 `private: true`로 npm 발행을 차단합니다. GitHub 저장소 생성·원격 설정·푸시, Storybook 공개 배포, npm 발행은 이번 작업에 포함하지 않습니다. 비공개 레지스트리 발행 시 scope·이름·레지스트리·접근 정책을 결정하고 인증은 사용자 설정 또는 CI secret으로 공급해야 합니다.
+Storybook은 [GitHub Actions](.github/workflows/deploy-storybook.yml)로 빌드하고 GitHub Pages에 배포합니다. 저장소의 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 설정하세요. `main`에 푸시하거나 Actions에서 수동 실행하면 테스트·Storybook 타입 검사·정적 빌드 후 `storybook-static/`을 게시합니다. 라이브러리의 `dist/`나 저장소 루트를 게시하는 방식이 아닙니다.
+
+공개 주소는 `https://runauxlabs.github.io/modu-design-system/`입니다. 배포가 실패하면 README 상단의 배포 상태 링크에서 실패한 단계를 확인하세요. 로컬 수정만으로 공개 사이트가 갱신되지는 않습니다.
+
+현재 `private: true`는 npm 발행만 차단하며 Storybook의 Pages 배포와는 별개입니다. npm 발행은 자동화하지 않았습니다. 비공개 레지스트리 발행 시 scope·이름·레지스트리·접근 정책을 결정하고 인증은 사용자 설정 또는 CI secret으로 공급해야 합니다.
