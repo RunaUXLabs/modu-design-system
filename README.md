@@ -1,6 +1,33 @@
 # modu-design-system
 
-모두의 시간 서비스 코드를 기준으로 분리한 React + TypeScript 디자인 시스템입니다. Atom 18개(아이콘 4개 포함), Molecule 7개와 MembersProvider를 제공합니다.
+모두의 시간 서비스를 구성하는 React + TypeScript 디자인 시스템입니다. Atom 18개(아이콘 4개 포함), Molecule 7개와 MembersProvider를 제공합니다.
+
+이 저장소는 서비스에서 사용하는 **디자인 시스템을 분리해 살펴보는 공간**입니다. Storybook에서 토큰, 개별 컴포넌트와 상태, 컴포넌트 조합 및 화면 안에서의 사용 예제를 확인할 수 있습니다. 서비스 전체 구성과 원본 코드, 디자인 시스템이 실제 화면에 연결되는 맥락은 [modu 저장소](https://github.com/RunaUXLabs/modu)에서 함께 확인할 수 있습니다.
+
+## Storybook 미리보기
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>파운데이션 · 컬러 토큰</strong><br>
+      <a href="docs/images/storybook-foundations.jpg"><img src="docs/images/storybook-foundations.jpg" alt="Storybook Foundations의 컬러 토큰과 색상 미리보기" width="100%"></a>
+    </td>
+    <td width="50%" valign="top">
+      <strong>아톰 · Button</strong><br>
+      <a href="docs/images/storybook-atoms.jpg"><img src="docs/images/storybook-atoms.jpg" alt="Storybook Atoms의 Button과 props 문서" width="100%"></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>분자 조합 · MatrixTable</strong><br>
+      <a href="docs/images/storybook-molecules.png"><img src="docs/images/storybook-molecules.png" alt="Storybook Molecules의 MatrixTable 응답 현황표와 Controls" width="100%"></a>
+    </td>
+    <td width="50%" valign="top">
+      <strong>서비스 전체 화면 · 일정 조율</strong><br>
+      <a href="docs/images/storybook-service-screen.jpg"><img src="docs/images/storybook-service-screen.jpg" alt="Storybook Service Screens의 일정 조율 채팅방 전체 프레임" width="100%"></a>
+    </td>
+  </tr>
+</table>
 
 ## 저장소 구조
 
@@ -12,7 +39,7 @@ examples/service/     서비스의 feature/page/CSS 스냅샷, 예제 전용
 docs/                 가이드라인, API, 구현 및 검증 기록
 ```
 
-2026-10-14에 서비스의 `src/design-system`과 최신 Storybook을 동기화했습니다. 서비스 상태 머신과 화면은 `examples/service`로 분리해 형제 `modu` 폴더 없이도 Storybook을 실행할 수 있습니다. 예제와 Storybook은 배포 패키지에 포함하지 않습니다. [동기화 범위와 원본 대응](docs/synchronization.md)을 참고하세요.
+`examples/service`는 공통 컴포넌트의 사용 맥락을 보여주기 위한 화면 예제입니다. 이 저장소만으로 Storybook을 실행할 수 있으며, 예제와 Storybook은 배포 패키지에 포함하지 않습니다. 서비스 전체 구현을 이 저장소에서 관리하는 것은 아닙니다.
 
 ## 개발
 
@@ -53,18 +80,17 @@ export function Example() {
 
 `build`는 ESM, 타입 선언, `style.css`, `tokens.css`를 `dist/`에 생성합니다. JS import만으로 CSS를 자동 주입하지 않습니다. 토큰만 사용한다면 `modu-design-system/tokens.css`를 import합니다. React와 React DOM은 소비 앱이 제공하는 peer dependency입니다. Pretendard 파일은 포함하지 않으며 폰트 로딩은 소비 앱이 담당합니다. React 19 peer 범위는 선언했지만 실행 검증은 React 18 기준입니다.
 
-로컬 설치 산출물은 `pnpm pack --pack-destination ./artifacts`로 만들고 소비 앱에서 `pnpm add <tarball 경로>`로 설치합니다. 현재 `modu`는 내부 모듈을 사용하므로 이 패키지에 자동 연결되지 않습니다. 이번 동기화로 서비스 의존성이나 lockfile을 변경하지 않았습니다.
+로컬 설치 산출물은 `pnpm pack --pack-destination ./artifacts`로 만들고 소비 앱에서 `pnpm add <tarball 경로>`로 설치합니다. 현재 `modu`는 내부 모듈을 사용하므로 이 패키지에 자동 연결되지 않습니다.
 
 ## 문서
 
 - [Storybook 실행 및 검토](docs/storybook-guide.md)
-- [동기화 기록과 저장소 경계](docs/synchronization.md)
+- [Storybook 목적과 범위](docs/storybook-scope.md)
 - [컴포넌트 가이드라인](docs/design-system/README.md)
 - [토큰 명세](DESIGN-SYSTEM.md)
 - [패키지 API](docs/package-api.md)
 - [구현 계획](docs/implementation-plan.md)
 - [SSOT 점검 이력](docs/ssot-audit.md)
-- [포트폴리오 기록](docs/portfolio-case-study.md)
 
 SSOT는 실제 서비스 코드입니다. Figma 슬롯과 React children/props를 구분하며 문서만으로 variant를 추가하지 않습니다. Button은 primary/secondary/ghost만 지원합니다. 회의 상태, 저장·마감 처리 및 화면 셸은 공개 API가 아닙니다.
 
