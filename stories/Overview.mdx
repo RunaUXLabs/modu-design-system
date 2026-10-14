@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Overview/검토 안내" />
+
+# 모두의 시간 디자인 시스템
+
+현재 서비스 화면을 기준으로 파운데이션, 사용하는 컴포넌트, 조합 미리보기, 사용자 선택에 따른 UI 상태 변화를 확인합니다.
+
+## 검토 순서
+
+| 영역 | 목적 | 근거 |
+| --- | --- | --- |
+| Foundations | 토큰 값과 적용 모습 | 정본 tokens.css |
+| Atoms / Molecules | 서비스에서 사용하는 기본·조합 UI의 형태와 상태 | src 패키지 소스 |
+| Patterns | 컴포넌트 조합과 선택값에 따른 표시 변화 | 회의 버블 조합, 응답 카드·현황표 |
+| Service Screens | 사용자별 화면, 편집·응답·확정 흐름 | 실제 ChatRoom, Sheet, store |
+
+## 조합 확인
+
+- Patterns에서 각 story의 Docs 설명으로 콘텐츠 순서, 하위 컴포넌트, 서비스가 관리하는 상태를 확인합니다.
+- Patterns의 Response Preview에서 가능·어려움을 직접 선택하면 카드와 현황표가 함께 바뀝니다.
+- Service Screens의 회의 정보 편집, 응답 제안/수정, 주최자 마감 현황에서 기능 로직과 공통 UI의 사용 범위를 비교합니다.
+- Workbench는 실제 테스터 바입니다. 계정 전환, 시간 진행, 리셋으로 서비스 상태를 탐색합니다.
+- Controls는 선택한 story의 시작 상태를 바꿉니다. 서비스 내부 클릭 상태는 store가 관리하므로 시작 Controls 값과 진행 후 상태가 같다고 가정하지 않습니다.
+
+## 구현 경계
+
+공통 UI와 토큰은 이 저장소의 `src`에 있습니다. 서비스의 `src/design-system`을 동기화한 소스입니다. 회의 상태와 액션, 전체 화면은 `examples/service`에 보존한 서비스 스냅샷을 사용합니다. 모든 예제는 이 저장소 하나로 실행할 수 있으며 공통 UI는 현재 패키지 소스를 import합니다. 서비스 CSS는 스토리북 화면 프레임 안에만 적용합니다. 예제 코드는 패키지 export와 배포 파일에 포함하지 않습니다.
+
+Board, MatrixTable, SectionTitle은 서비스에서도 공통 컴포넌트 인스턴스로 사용합니다. Field의 편집 상태와 저장 액션은 scheduling feature에서 관리합니다. 서비스에서 쓰지 않는 버튼 형태나 구현용 Provider 예제는 별도 영역으로 전시하지 않습니다.
+
+## 검증과 제한
+
+각 예제의 Docs, Controls, 접근성 결과와 play 실행 결과를 함께 검토합니다. 정적 빌드 성공은 전체 상호작용·WCAG 통과를 의미하지 않습니다. 폰트가 없으면 시스템 폴백을 사용하므로 Figma 실측 비교 전에 Pretendard 로딩 조건을 맞춰야 합니다.
+
+서비스 phone의 402px 고정 폭을 보존합니다. 더 좁은 viewport에서는 프레임을 스크롤하며 검토합니다. 이를 제품의 반응형 화면 구현으로 오해하지 않습니다.
+
+[디자인 가이드라인](./guidelines/README.md) · [Button 계약](./guidelines/atoms/button.md) · [슬롯 조합](./guidelines/molecules/bubble-shell.md)

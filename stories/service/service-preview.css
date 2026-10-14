@@ -1,0 +1,21 @@
+.sb-service-root { width: 100%; min-height: 100%; }
+.sb-service-root .sb-service-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  overflow-x: auto;
+}
+.sb-service-root .sb-service-layout > .phone { flex-shrink: 0; }
+.sb-service-root .sb-service-judge { width: 440px; flex-shrink: 0; }
+.sb-service-root .sb-pattern-phone { margin: var(--space-6) auto; }
+.sb-service-root .sb-pattern-content { padding: var(--space-4); }
+@media (max-width: 900px) {
+  .sb-service-root .sb-service-layout { flex-direction: column; align-items: center; }
+  .sb-service-root .sb-service-judge { width: 100%; max-width: 440px; }
+}
+@media (max-width: 450px) {
+  .sb-service-root .sb-service-layout { align-items: flex-start; padding: var(--space-2); }
+  .sb-service-root .sb-pattern-phone { margin: var(--space-2); }
+}

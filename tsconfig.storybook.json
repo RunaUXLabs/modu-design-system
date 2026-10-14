@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"],
+    "allowJs": true,
+    "checkJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@modu-service/*": ["examples/service/*"],
+      "@design-system": ["src/index.ts"],
+      "@design-system/*": ["src/*"]
+    }
+  },
+  "include": [".storybook", "stories", "src", "examples", "vitest.service.config.ts"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "src/test"]
+}
