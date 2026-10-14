@@ -52,7 +52,7 @@ pnpm run check
 pnpm run storybook
 ```
 
-Storybook 기본 주소는 `http://localhost:6006`입니다. 포트가 사용 중이면 `pnpm exec storybook dev -p 6007 --no-open`으로 다른 포트를 지정할 수 있습니다.
+Storybook 기본 주소는 `http://localhost:6008`입니다. 서비스 Storybook의 기본 포트 6006과 분리했습니다. 실행 중인 터미널에서 `Ctrl+C`로 종료한 뒤 다시 실행하세요. 포트가 사용 중이면 `pnpm exec storybook dev -p 6011 --no-open`으로 다른 포트를 지정할 수 있습니다. VS Code 실행 문제는 [실행 환경 점검](docs/storybook-guide.md#vs-code-실행-환경-점검)을 참고하세요.
 
 ```powershell
 pnpm run typecheck:storybook
